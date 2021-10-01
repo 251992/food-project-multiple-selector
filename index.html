@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select name="lunch" id="lunch" multiple>
+        <option value="10">Pizza</option>
+        <option value="40">Bruger</option>
+        <option value="17">French fry</option>
+        <option value="70">Rice</option>
+        <option value="80">Biryani</option>
+
+    </select>
+    <select name="dinner" id="dinner" multiple>
+        <option value="10">Pizza</option>
+        <option value="40">Bruger</option>
+        <option value="17">French fry</option>
+        <option value="70">Rice</option>
+        <option value="80">Biryani</option>
+
+    </select>
+    <select name="gift" id="gift">
+        <option value="10">Pizza</option>
+        <option value="40">Bruger</option>
+        <option value="17">French fry</option>
+        <option value="70">Rice</option>
+        <option value="80">Biryani</option>
+
+    </select>
+    <div name="" id="cost" ></div>
+    <button id="btn">Get Cost</button>
+
+    <script>
+
+        var foods = []
+        var btn = document.getElementById("btn")
+        btn.addEventListener("click", function () {
+
+            var lunch = document.getElementById("lunch").options;
+            for (var i = 0; i < lunch.length; i++) {
+                if (lunch[i].selected) {
+                    var obj = { "price": lunch[i].value, "item": lunch[i].innerText }
+                    foods.push(obj)
+                }
+            }
+
+            var dinner = document.getElementById("dinner").options;
+            for (var i = 0; i < dinner.length; i++) {
+                if (dinner[i].selected) {
+                    var obj1 = { "price": dinner[i].value, "item": dinner[i].innerText }
+                    foods.push(obj1)
+                }
+            }
+
+            var gift = document.getElementById("gift");
+            var o2 = { "price": gift.value, "item": gift.innerText }
+            foods.push(o2)
+
+            var temp = `<ul>`
+            var total = 0
+            foods.forEach(function (f) {
+                temp += `<li> Item: ${f.item} => Price: ${f.price}</li>`
+                total += parseFloat(f.price)
+            })
+            temp += `<li>Total Cost = ${total}</li></ul>`
+            document.getElementById("cost").innerHTML = temp
+
+        })
+
+
+    </script>
+</body>
+
+</html>
